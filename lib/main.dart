@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurantapp/detail.dart';
 import 'package:restaurantapp/restaurant.dart';
 import 'package:restaurantapp/restaurantpage.dart';
+import 'package:restaurantapp/searchpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
               restaurant:
                   ModalRoute.of(context)?.settings.arguments as Restaurant,
             ),
+        SearchPage.routeName: (context) => const SearchPage(),
       },
     );
   }

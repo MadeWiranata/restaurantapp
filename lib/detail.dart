@@ -78,17 +78,72 @@ class RestaurantDetailPage extends StatelessWidget {
                   new Column(
                     children: [
                       new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton(
-                            child: const Icon(Icons.local_drink),
-                            onPressed: () {},
-                          ),
-                          ElevatedButton(
-                            child: const Icon(Icons.food_bank),
-                            onPressed: () {},
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Foods',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
                         ],
+                      ),
+                    ],
+                  ),
+                  new Column(
+                    children: [
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: restaurant.menus.foods
+                              .map((makan) => Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 8),
+                                  child: Card(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Text(makan.name),
+                                  ))))
+                              .toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                  new Column(
+                    children: [
+                      new Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Drinks',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  new Column(
+                    children: [
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: restaurant.menus.drinks
+                              .map((minuman) => Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 8),
+                                  child: Card(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Text(minuman.name),
+                                  ))))
+                              .toList(),
+                        ),
                       ),
                     ],
                   ),
