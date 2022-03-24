@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:restaurantapp/detail.dart';
 import 'package:restaurantapp/restaurant.dart';
+import 'package:restaurantapp/searchpage.dart';
 import 'package:restaurantapp/styles.dart';
 
 class RestaurantPage extends StatelessWidget {
@@ -15,7 +16,18 @@ class RestaurantPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Restaurant App'),
+        title: const Text(
+          'Restaurant',
+        ),
+        actions: [
+          IconButton(
+            key: const Key('search_icon'),
+            onPressed: () {
+              Navigator.pushNamed(context, SearchPage.routeName);
+            },
+            icon: const Icon(Icons.search),
+          )
+        ],
       ),
       body: FutureBuilder<String>(
         future:
