@@ -7,7 +7,8 @@ import 'package:restaurantapp/presentation/pages/restaurant_detail_page.dart';
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
 
-  RestaurantCard(this.restaurant);
+  // ignore: use_key_in_widget_constructors
+  const RestaurantCard(this.restaurant);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class RestaurantCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       restaurant.description ?? '-',
                       maxLines: 2,
@@ -59,12 +60,12 @@ class RestaurantCard extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${restaurant.pictureId}',
                   width: 80,
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
             ),
           ],

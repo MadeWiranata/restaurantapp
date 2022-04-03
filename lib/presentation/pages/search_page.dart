@@ -6,13 +6,16 @@ import 'package:restaurantapp/presentation/provider/restaurant_search_notifier.d
 import 'package:restaurantapp/presentation/widgets/restaurant_card_list.dart';
 
 class SearchPage extends StatelessWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/search';
+
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: const Text('Search'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -24,14 +27,14 @@ class SearchPage extends StatelessWidget {
                 Provider.of<RestaurantSearchNotifier>(context, listen: false)
                     .fetchRestaurantSearch(query);
               },
-              decoration: InputDecoration(
-                hintText: 'Search title',
+              decoration: const InputDecoration(
+                hintText: 'Search',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Search Result',
               style: kHeading6,
@@ -39,7 +42,7 @@ class SearchPage extends StatelessWidget {
             Consumer<RestaurantSearchNotifier>(
               builder: (context, data, child) {
                 if (data.state == RequestState.Loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (data.state == RequestState.Loaded) {

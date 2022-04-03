@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:restaurantapp/domain/entities/foods.dart';
 
 class RestaurantFoodsModel extends Equatable {
-  RestaurantFoodsModel({
+  const RestaurantFoodsModel({
     required this.name,
   });
 
@@ -18,7 +18,7 @@ class RestaurantFoodsModel extends Equatable {
       };
 
   Foods toEntity() {
-    return Foods(name: this.name);
+    return Foods(name: name);
   }
 
   @override

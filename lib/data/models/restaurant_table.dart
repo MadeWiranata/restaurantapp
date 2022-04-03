@@ -8,7 +8,7 @@ class RestaurantTable extends Equatable {
   final String? description;
   final String? pictureId;
 
-  RestaurantTable({
+  const RestaurantTable({
     required this.id,
     required this.name,
     required this.description,
@@ -45,6 +45,7 @@ class RestaurantTable extends Equatable {
       );
 
   @override
+  // ignore: todo
   // TODO: implement props
   List<Object?> get props => [id, name, description, pictureId];
 }

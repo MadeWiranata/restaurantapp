@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Foods extends Equatable {
-  Foods({
+  const Foods({
     required this.name,
   });
 

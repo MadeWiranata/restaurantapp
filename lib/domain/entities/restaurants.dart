@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Restaurant extends Equatable {
   Restaurant({
     required this.id,

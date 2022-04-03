@@ -20,9 +20,9 @@ class RestaurantRepositoryImpl implements RestaurantRepository {
       final result = await remoteDataSource.getRestaurant();
       return Right(result.map((model) => model.toEntity()).toList());
     } on ServerException {
-      return Left(ServerFailure(''));
+      return const Left(ServerFailure(''));
     } on SocketException {
-      return Left(ConnectionFailure('Failed to connect to the network'));
+      return const Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -33,9 +33,9 @@ class RestaurantRepositoryImpl implements RestaurantRepository {
       final restaurant = await remoteDataSource.getRestaurantDetail(id);
       return Right(restaurant.restaurant.toEntity());
     } on ServerException {
-      return Left(ServerFailure(''));
+      return const Left(ServerFailure(''));
     } on SocketException {
-      return Left(ConnectionFailure('Failed to connect to the network'));
+      return const Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -46,9 +46,9 @@ class RestaurantRepositoryImpl implements RestaurantRepository {
       final result = await remoteDataSource.searchRestaurant(query);
       return Right(result.map((model) => model.toEntity()).toList());
     } on ServerException {
-      return Left(ServerFailure(''));
+      return const Left(ServerFailure(''));
     } on SocketException {
-      return Left(ConnectionFailure('Failed to connect to the network'));
+      return const Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 }
