@@ -16,6 +16,7 @@ void main() {
   runApp(MyApp());
 }
 
+// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -36,17 +37,18 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData.dark().copyWith(
           colorScheme: kColorScheme,
-          primaryColor: kRichBlack,
+          primaryColor: kOxfordBlue,
+          // ignore: deprecated_member_use
           accentColor: kMikadoYellow,
-          scaffoldBackgroundColor: kRichBlack,
+          scaffoldBackgroundColor: kOxfordBlue,
           textTheme: kTextTheme,
         ),
-        home: HomePage(),
+        home: const HomePage(),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case HomePage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => HomePage());
+              return MaterialPageRoute(builder: (_) => const HomePage());
             case RestaurantDetailPage.ROUTE_NAME:
               final id = settings.arguments as String;
               return MaterialPageRoute(
@@ -54,10 +56,10 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case SearchPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => SearchPage());
+              return CupertinoPageRoute(builder: (_) => const SearchPage());
             default:
               return MaterialPageRoute(builder: (_) {
-                return Scaffold(
+                return const Scaffold(
                   body: Center(
                     child: Text('Page not found :('),
                   ),

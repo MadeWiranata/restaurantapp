@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names, unnecessary_this, must_be_immutable
 import 'package:equatable/equatable.dart';
 import 'package:restaurantapp/data/models/restaurant_categories_model.dart';
 import 'package:restaurantapp/data/models/restaurant_customer_review_model.dart';
@@ -24,7 +25,7 @@ class RestaurantDetailResponse extends Equatable {
   String city;
   String address;
   String pictureId;
-  double rating;
+  String rating;
   List<RestaurantCategoriesModel> categories;
   RestaurantMenusModel menus;
   List<RestaurantCustomerReviewsModel> customerReviews;
@@ -37,7 +38,7 @@ class RestaurantDetailResponse extends Equatable {
         city: restaurant["city"],
         address: restaurant["address"],
         pictureId: restaurant["pictureId"],
-        rating: restaurant["rating"],
+        rating: restaurant["rating"].toString(),
         categories: List<RestaurantCategoriesModel>.from(
             restaurant["categories"]
                 .map((x) => RestaurantCategoriesModel.fromJson(x))),
@@ -81,6 +82,7 @@ class RestaurantDetailResponse extends Equatable {
   }
 
   @override
+  // ignore: todo
   // TODO: implement props
   List<Object?> get props => [
         id,

@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:restaurantapp/domain/entities/customer_review.dart';
 
 class RestaurantCustomerReviewsModel extends Equatable {
-  RestaurantCustomerReviewsModel({
+  const RestaurantCustomerReviewsModel({
     required this.name,
     required this.review,
     required this.date,
@@ -27,9 +27,9 @@ class RestaurantCustomerReviewsModel extends Equatable {
 
   CustomerReviews toEntity() {
     return CustomerReviews(
-      name: this.name,
-      review: this.review,
-      date: this.date,
+      name: name,
+      review: review,
+      date: date,
     );
   }
 

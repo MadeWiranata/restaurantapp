@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: constant_identifier_names
 const String BASE_IMAGE_URL =
     'https://restaurant-api.dicoding.dev/images/medium/';
 
@@ -32,13 +33,15 @@ final kTextTheme = TextTheme(
 
 const kColorScheme = ColorScheme(
   primary: kMikadoYellow,
+  // ignore: deprecated_member_use
   primaryVariant: kMikadoYellow,
   secondary: kPrussianBlue,
+  // ignore: deprecated_member_use
   secondaryVariant: kPrussianBlue,
-  surface: kRichBlack,
-  background: kRichBlack,
+  surface: kOxfordBlue,
+  background: kOxfordBlue,
   error: Colors.red,
-  onPrimary: kRichBlack,
+  onPrimary: kOxfordBlue,
   onSecondary: Colors.white,
   onSurface: Colors.white,
   onBackground: Colors.white,

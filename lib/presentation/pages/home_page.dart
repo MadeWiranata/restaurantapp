@@ -9,7 +9,10 @@ import 'package:restaurantapp/presentation/pages/search_page.dart';
 import 'package:restaurantapp/presentation/provider/restaurant_notifier.dart';
 
 class HomePage extends StatefulWidget {
+  // ignore: constant_identifier_names
   static const ROUTE_NAME = '/home';
+
+  const HomePage({Key? key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -27,13 +30,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ditonton'),
+        title: const Text('Restaurant'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
             },
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
           )
         ],
       ),
@@ -43,20 +46,16 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Now Playing',
-                style: kHeading6,
-              ),
               Consumer<RestaurantNotifier>(builder: (context, data, child) {
                 final state = data.state;
                 if (state == RequestState.Loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
                   return RestaurantList(data.restaurant);
                 } else {
-                  return Text('Failed');
+                  return const Text('No Internet');
                 }
               }),
             ],
@@ -70,18 +69,21 @@ class _HomePageState extends State<HomePage> {
 class RestaurantList extends StatelessWidget {
   final List<Restaurant> restaurants;
 
-  RestaurantList(this.restaurants);
+  // ignore: use_key_in_widget_constructors
+  const RestaurantList(this.restaurants);
 
   @override
   Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
     return Container(
-      height: 200,
+      height: 770,
       child: ListView.builder(
-        scrollDirection: Axis.horizontal,
+        scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           final restaurant = restaurants[index];
           return Container(
-            padding: const EdgeInsets.all(8),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: InkWell(
               onTap: () {
                 Navigator.pushNamed(
@@ -90,15 +92,59 @@ class RestaurantList extends StatelessWidget {
                   arguments: restaurant.id,
                 );
               },
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-                child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${restaurant.pictureId}',
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(16)),
+                        child: CachedNetworkImage(
+                          imageUrl: '$BASE_IMAGE_URL${restaurant.pictureId}',
+                          width: 100,
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${restaurant.name}',
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(Icons.location_city_outlined),
+                                  Text(
+                                    '${restaurant.city}',
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.star,
+                                    size: 17,
+                                  ),
+                                  Text(
+                                    '${restaurant.rating}',
+                                  )
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      )
+                    ],
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+                ],
               ),
             ),
           );

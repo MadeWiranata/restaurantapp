@@ -12,6 +12,7 @@ abstract class RestaurantRemoteDataSource {
 }
 
 class RestaurantRemoteDataSourceImpl implements RestaurantRemoteDataSource {
+  // ignore: constant_identifier_names
   static const BASE_URL = 'https://restaurant-api.dicoding.dev';
 
   final http.Client client;

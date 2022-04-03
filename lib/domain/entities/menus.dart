@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:restaurantapp/domain/entities/drinks.dart';
 import 'package:restaurantapp/domain/entities/foods.dart';
 
+// ignore: must_be_immutable
 class Menus extends Equatable {
   Menus({
     required this.foods,

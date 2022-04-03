@@ -27,8 +27,10 @@ class RestaurantMenusModel extends Equatable {
 
   Menus toEntity() {
     return Menus(
-      foods: this.foods.map((Foods) => Foods.toEntity()).toList(),
-      drinks: this.drinks.map((Drinks) => Drinks.toEntity()).toList(),
+      // ignore: non_constant_identifier_names
+      foods: foods.map((Foods) => Foods.toEntity()).toList(),
+      // ignore: non_constant_identifier_names
+      drinks: drinks.map((Drinks) => Drinks.toEntity()).toList(),
     );
   }
 

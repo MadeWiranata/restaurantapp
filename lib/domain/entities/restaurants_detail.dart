@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:restaurantapp/data/models/restaurant_menus_model.dart';
 import 'package:restaurantapp/domain/entities/categories.dart';
 import 'package:restaurantapp/domain/entities/customer_review.dart';
-import 'package:restaurantapp/domain/entities/menus.dart';
 
+// ignore: must_be_immutable
 class RestaurantDetail extends Equatable {
   RestaurantDetail({
     required this.id,
@@ -24,7 +24,7 @@ class RestaurantDetail extends Equatable {
   String city;
   String address;
   String pictureId;
-  double rating;
+  String rating;
   List<Categories> categories;
   RestaurantMenusModel menus;
   List<CustomerReviews> customerReviews;

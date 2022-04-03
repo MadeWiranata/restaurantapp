@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CustomerReviews extends Equatable {
-  CustomerReviews({
+  const CustomerReviews({
     required this.name,
     required this.review,
     required this.date,

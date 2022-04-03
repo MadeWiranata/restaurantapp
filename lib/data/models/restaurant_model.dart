@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:restaurantapp/domain/entities/restaurants.dart';
 
 class RestaurantModel extends Equatable {
-  RestaurantModel({
+  const RestaurantModel({
     required this.id,
     required this.name,
     required this.description,
@@ -39,9 +39,9 @@ class RestaurantModel extends Equatable {
 
   Restaurant toEntity() {
     return Restaurant(
-      id: this.id,
-      name: this.name,
-      description: this.description,
+      id: id,
+      name: name,
+      description: description,
       pictureId: pictureId,
       city: city,
       rating: rating,
