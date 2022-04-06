@@ -25,6 +25,8 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
     Future.microtask(() {
       Provider.of<RestaurantDetailNotifier>(context, listen: false)
           .fetchRestaurantDetail(widget.id);
+      Provider.of<RestaurantDetailNotifier>(context, listen: false)
+          .loadFavoritStatus(widget.id);
     });
   }
 
@@ -42,6 +44,7 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
             return SafeArea(
               child: DetailContent(
                 restaurant,
+                provider.isAddedToFavorit,
               ),
             );
           } else {
@@ -55,9 +58,10 @@ class _RestaurantDetailPageState extends State<RestaurantDetailPage> {
 
 class DetailContent extends StatelessWidget {
   final RestaurantDetail restaurant;
+  final bool isAddedFavorit;
 
   // ignore: use_key_in_widget_constructors
-  const DetailContent(this.restaurant);
+  const DetailContent(this.restaurant, this.isAddedFavorit);
 
   @override
   Widget build(BuildContext context) {
@@ -87,9 +91,60 @@ class DetailContent extends StatelessWidget {
                               const Icon(Icons.error),
                         ),
                       ),
-                      Text(
-                        restaurant.name,
-                        style: kHeading5,
+                      Row(
+                        children: [
+                          Text(
+                            restaurant.name,
+                            style: kHeading5,
+                          ),
+                          ElevatedButton(
+                            onPressed: () async {
+                              if (!isAddedFavorit) {
+                                await Provider.of<RestaurantDetailNotifier>(
+                                        context,
+                                        listen: false)
+                                    .addFavorit(restaurant);
+                              } else {
+                                await Provider.of<RestaurantDetailNotifier>(
+                                        context,
+                                        listen: false)
+                                    .removeFromFavorit(restaurant);
+                              }
+
+                              final message =
+                                  Provider.of<RestaurantDetailNotifier>(context,
+                                          listen: false)
+                                      .favoritMessage;
+
+                              if (message ==
+                                      RestaurantDetailNotifier
+                                          .favoritAddSuccessMessage ||
+                                  message ==
+                                      RestaurantDetailNotifier
+                                          .favoritRemoveSuccessMessage) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(message)));
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        content: Text(message),
+                                      );
+                                    });
+                              }
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                isAddedFavorit
+                                    ? const Icon(Icons.favorite)
+                                    : const Icon(Icons.favorite_border),
+                                //const Text('Favorit'),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       Row(
                         children: [

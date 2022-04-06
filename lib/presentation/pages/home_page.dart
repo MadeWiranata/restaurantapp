@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:restaurantapp/common/constants.dart';
 import 'package:restaurantapp/common/state_enum.dart';
 import 'package:restaurantapp/domain/entities/restaurants.dart';
+import 'package:restaurantapp/presentation/pages/favorit_page.dart';
 import 'package:restaurantapp/presentation/pages/restaurant_detail_page.dart';
 import 'package:restaurantapp/presentation/pages/search_page.dart';
 import 'package:restaurantapp/presentation/provider/restaurant_notifier.dart';
@@ -29,6 +30,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.favorite),
+              title: const Text('Favorit'),
+              onTap: () {
+                Navigator.pushNamed(context, FavoritPage.ROUTE_NAME);
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: const Text('Restaurant'),
         actions: [
