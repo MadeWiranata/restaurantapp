@@ -12,6 +12,8 @@ import 'package:restaurantapp/domain/usecase/get_restaurant_detail.dart';
 import 'package:restaurantapp/domain/usecase/remove_favorit.dart';
 import 'package:restaurantapp/domain/usecase/save_favorit.dart';
 import 'package:restaurantapp/domain/usecase/search_restaurant.dart';
+import 'package:restaurantapp/presentation/notif/preference_provider.dart';
+import 'package:restaurantapp/presentation/notif/sc_provider.dart';
 import 'package:restaurantapp/presentation/provider/favorit_restaurant_notifier.dart';
 import 'package:restaurantapp/presentation/provider/restaurant_detail_notifier.dart';
 import 'package:restaurantapp/presentation/provider/restaurant_notifier.dart';
@@ -42,6 +44,14 @@ void init() {
   locator.registerFactory(
     () => FavoritRestaurantNotifier(
       getFavoritRestaurant: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => SchedulingProvider(),
+  );
+  locator.registerFactory(
+    () => PreferencesProvider(
+      preferencesHelper: locator(),
     ),
   );
 
